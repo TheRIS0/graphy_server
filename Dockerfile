@@ -1,15 +1,8 @@
-FROM node:24-bookworm-slim
+FROM node:24-alpine
 
 WORKDIR /usr/src/app
 
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends \
-        git \
-        zlib1g zlib1g-dev \
-        libpam-modules libpam-modules-bin \
-        python3 && \
-    rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache git zlib
 
 COPY package.json package-lock.json ./
 
